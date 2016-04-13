@@ -141,7 +141,7 @@ class Better_Theme_Customizer {
 
 		include_once( __DIR__ . '/s8-options.php' );
 		include_once( __DIR__ . '/helpers/class-customizer-helpers.php' );
-		include_once( __DIR__ . '/bootstrap.php' );
+		include_once( __DIR__ . '/helper-functions.php' );
 	}
 
 	/**
