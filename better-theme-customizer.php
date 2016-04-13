@@ -12,6 +12,11 @@ use S8\BetterThemeCustomizer\CustomizerControls\Media_Library_Control;
 use S8\BetterThemeCustomizer\CustomizerControls\Dropdown_Posts_Control;
 use S8\BetterThemeCustomizer\CustomizerControls\Dropdown_Post_Types_Control;
 
+// Prevent direct access
+if ( ! defined( 'ABSPATH' ) ) {
+	exit();
+}
+
 /**
  * Class BetterThemeCustomizer
  * @package S8\BetterThemeCustomizer
@@ -120,6 +125,7 @@ class Better_Theme_Customizer {
 	 * BetterThemeCustomizer constructor.
 	 */
 	public function __construct() {
+
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 
@@ -132,7 +138,10 @@ class Better_Theme_Customizer {
 	 * Finds the template where options are stored.
 	 */
 	public function init() {
-		include_once(__DIR__ . '/s8-options.php');
+
+		include_once( __DIR__ . '/s8-options.php' );
+		include_once( __DIR__ . '/helpers/class-customizer-helpers.php' );
+		include_once( __DIR__ . '/bootstrap.php' );
 	}
 
 	/**
@@ -141,9 +150,10 @@ class Better_Theme_Customizer {
 	 * @param \WP_Customize_Manager $wp_customize
 	 */
 	public function customize_register( $wp_customize ) {
-		require_once('customizer-controls/class-media-library-control.php');
-		require_once('customizer-controls/class-dropdown-posts-control.php');
-		require_once('customizer-controls/class-dropdown-post-types-control.php');
+
+		require_once( 'customizer-controls/class-media-library-control.php' );
+		require_once( 'customizer-controls/class-dropdown-posts-control.php' );
+		require_once( 'customizer-controls/class-dropdown-post-types-control.php' );
 		// Get and setup options
 		$this->raw_options = apply_filters( 's8_options_register', array() );
 		$this->process_raw_options( $this->raw_options );
@@ -163,6 +173,7 @@ class Better_Theme_Customizer {
 	 * @return bool
 	 */
 	public function save_multi_site_setting( $value, $wp_customize_setting ) {
+
 		return update_site_option( $wp_customize_setting->id, $value );
 	}
 
@@ -170,6 +181,7 @@ class Better_Theme_Customizer {
 	 * Process our options
 	 */
 	protected function process_raw_options( $raw_options ) {
+
 		if ( ! empty( $raw_options ) && is_array( $raw_options ) ) {
 			foreach ( $raw_options as $item_id => $settings ) {
 				if ( isset( $settings['_panel'] ) || isset( $settings['_section'] ) ) {
@@ -198,10 +210,11 @@ class Better_Theme_Customizer {
 	}
 
 	/**
-	 * @param array $options
+	 * @param array  $options
 	 * @param string $panel_id
 	 */
 	protected function process_raw_panel( $options, $panel_id ) {
+
 		foreach ( $options as $item_id => $settings ) {
 			if ( isset( $settings['_section'] ) ) {
 				$section_settings = $this->extract_args_to_array( $settings['_section'],
@@ -219,10 +232,11 @@ class Better_Theme_Customizer {
 	}
 
 	/**
-	 * @param array $options
+	 * @param array       $options
 	 * @param string|bool $section_id
 	 */
 	protected function process_raw_section( $options, $section_id ) {
+
 		foreach ( $options as $item_id => $settings ) {
 			if ( false === $section_id ) {
 				$settings['priority'] = false;
@@ -237,6 +251,7 @@ class Better_Theme_Customizer {
 	 * @param \WP_Customize_Manager $wp_customize
 	 */
 	protected function register_top_level( $wp_customize ) {
+
 		$priority = 0;
 		foreach ( $this->top_panels_sections as $id => $settings ) {
 			if ( ! isset( $settings['priority'] ) ) {
@@ -255,6 +270,7 @@ class Better_Theme_Customizer {
 	 * @param \WP_Customize_Manager $wp_customize
 	 */
 	protected function register_sub_sections( $wp_customize ) {
+
 		$priority = 0;
 		foreach ( $this->sub_sections as $id => $settings ) {
 			if ( ! isset( $settings['priority'] ) ) {
@@ -269,6 +285,7 @@ class Better_Theme_Customizer {
 	 * @param \WP_Customize_Manager $wp_customize
 	 */
 	protected function register_settings_controls( $wp_customize ) {
+
 		foreach ( $this->options as $setting_id => $args ) {
 			$setting_args = $this->extract_args_to_array( $args, $this->allowed_setting_options );
 
@@ -276,6 +293,7 @@ class Better_Theme_Customizer {
 			if ( isset( $setting_args['type'] ) && self::SITE_OPTION == $setting_args['type'] ) {
 				if ( is_multisite() ) {
 					add_filter( "customize_value_{$setting_id}", function ( $default ) use ( $setting_id ) {
+
 						return get_site_option( $setting_id, $default );
 					} );
 				} else {
@@ -299,7 +317,8 @@ class Better_Theme_Customizer {
 						$control_args ) );
 					break;
 				case 'dropdown-post-types':
-					$wp_customize->add_control( new Dropdown_Post_Types_Control( $wp_customize, $setting_id, $control_args ) );
+					$wp_customize->add_control( new Dropdown_Post_Types_Control( $wp_customize, $setting_id,
+						$control_args ) );
 					break;
 				case 'dropdown-posts':
 					$control_args = array_merge(
@@ -307,7 +326,8 @@ class Better_Theme_Customizer {
 						$this->extract_args_to_array( $args, array(
 							'post_type' => 'post_type',
 						) ) );
-					$wp_customize->add_control( new Dropdown_Posts_Control( $wp_customize, $setting_id, $control_args ) );
+					$wp_customize->add_control( new Dropdown_Posts_Control( $wp_customize, $setting_id,
+						$control_args ) );
 					break;
 
 				/* WP Included classes below this line */
@@ -348,6 +368,7 @@ class Better_Theme_Customizer {
 	 * @return array
 	 */
 	protected function extract_args_to_array( $args, $extract ) {
+
 		$extracted_args = array();
 		if ( ! empty( $extract ) && ! empty( $args ) ) {
 			foreach ( (array) $extract as $key => $args_key ) {
