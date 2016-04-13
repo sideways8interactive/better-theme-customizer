@@ -1,0 +1,23 @@
+{
+  "name": "sideways8/better-theme-customizer",
+  "description": "A plugin that extends default customizer functionality.",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Aaron Reimann",
+      "email": "aaronr@sideways8.com",
+      "role": "Developer"
+    },
+    {
+      "name": "David Wood",
+      "email": "davidw@sideways8.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Garrett Rappaport",
+      "email": "garrettr@sideways8.com",
+      "role": "Developer"
+    }
+  ]
+}
