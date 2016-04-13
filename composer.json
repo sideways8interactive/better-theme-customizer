@@ -19,5 +19,8 @@
       "email": "garrettr@sideways8.com",
       "role": "Developer"
     }
-  ]
+  ],
+  "require_dev": {
+      "phpunit/phpunit": "~5.0"
+  }
 }
