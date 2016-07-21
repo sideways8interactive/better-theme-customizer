@@ -138,10 +138,9 @@ class Better_Theme_Customizer {
 	 * Finds the template where options are stored.
 	 */
 	public function init() {
-
-		include_once( __DIR__ . '/s8-options.php' );
-		include_once( __DIR__ . '/helpers/class-customizer-helpers.php' );
-		include_once( __DIR__ . '/helper-functions.php' );
+		$this->get_custom_theme_options();
+		require_once( __DIR__ . '/helpers/class-customizer-helpers.php' );
+		require_once( __DIR__ . '/helper-functions.php' );
 	}
 
 	/**
@@ -175,6 +174,21 @@ class Better_Theme_Customizer {
 	public function save_multi_site_setting( $value, $wp_customize_setting ) {
 
 		return update_site_option( $wp_customize_setting->id, $value );
+	}
+
+	/**
+	 * Include custom theme options.
+	 */
+	protected function get_custom_theme_options() {
+		// first check includes directory in theme
+		$theme_dir = get_template_directory();
+		if ( file_exists( $theme_dir . '/includes/s8-options.php' ) ) {
+			include_once( $theme_dir . '/includes/s8-options.php' );
+		} else if ( file_exists( $theme_dir . '/s8-options.php' ) ) {
+			include_once( $theme_dir . '/s8-options.php' );
+		} else if ( file_exists( __DIR__ . '/s8-options.php' ) ) {
+			include_once( __DIR__ . '/s8-options.php' );
+		}
 	}
 
 	/**

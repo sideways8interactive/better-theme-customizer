@@ -1,8 +1,12 @@
 <?php
 
 /**
- * Registration of theme options with the Infinite Theme Engine
- * See theme-engine/docs/options.md for details on how to use
+ * These are default theme options for the Better Theme Customizer Plugin.
+ *
+ * You can either use the s8-options.php in the PLUGIN_ROOT or use it directly in your theme.
+ * Include theme options hierarchy goes as follows:
+ * THEME_ROOT/includes/s8-options.php > THEME_ROOT/s8-options.php > PLUGIN_ROOT/s8-options.php
+ *
  * TODO: write documentation in readme
  */
 add_filter( 's8_options_register', function ( $settings ) {
