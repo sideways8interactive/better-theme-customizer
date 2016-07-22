@@ -18,7 +18,7 @@ class Media_Library_Control extends \WP_Customize_Control {
 		// This ensures that the WP media library loads all that it needs on the customize page
 		add_action( 'customize_controls_print_footer_scripts', 'wp_print_media_templates' );
 		wp_enqueue_script( 's8-theme-customizer',
-			get_template_directory_uri() . "/inc/better-theme-customizer/customizer-controls/customizer-media-library{$is_min}.js",
+			plugins_url() . "/better-theme-customizer/customizer-controls/customizer-media-library{$is_min}.js",
 			array( 'jquery' ), false, true );
 	}
 
