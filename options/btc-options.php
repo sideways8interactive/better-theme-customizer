@@ -3,13 +3,13 @@
 /**
  * These are default theme options for the Better Theme Customizer Plugin.
  *
- * You can either use the s8-options.php in the PLUGIN_ROOT or use it directly in your theme.
+ * You can either use the btc-options.php in the PLUGIN_ROOT or use it directly in your theme.
  * Include theme options hierarchy goes as follows:
- * THEME_ROOT/includes/s8-options.php > THEME_ROOT/s8-options.php > PLUGIN_ROOT/s8-options.php
+ * THEME_ROOT/includes/btc-options.php > THEME_ROOT/btc-options.php > PLUGIN_ROOT/btc-options.php
  *
  * TODO: write documentation in readme
  */
-add_filter( 's8_options_register', function ( $settings ) {
+add_filter( 'btc_options_register', function ( $settings ) {
 	$settings_array = array(
 		'general_options'  => array(
 			'_panel'         => array(

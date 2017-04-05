@@ -22,5 +22,8 @@
   ],
   "require_dev": {
       "phpunit/phpunit": "~5.0"
+  },
+  "require": {
+    "symfony/yaml": "^3.2"
   }
 }

@@ -12,7 +12,12 @@ class Customizer_Helpers {
 	 * Print theme mod.
 	 *
 	 * @param       $mod
-	 * @param array $args
+	 * @param array $args {
+	 *
+	 * @type string $before Is echoed out before the theme_mod value
+	 * @type string $after Is echoed out after the theme_mod value
+	 * @type string $esc_callback Used to escape the output, can pass any valid callback. False will force no callback.
+	 * }
 	 *
 	 * @return void
 	 */
@@ -21,14 +26,9 @@ class Customizer_Helpers {
 		$mod = self::get_mod( $mod );
 
 		$args = wp_parse_args( $args, array(
-			'default'      => false,
-			// The default supplied to get_theme_mod, false is default
 			'before'       => '',
-			// Is echoed out before the theme_mod value
 			'after'        => '',
-			// Is echoed out after the theme_mod value
 			'esc_callback' => 'esc_html',
-			// Used to escape the output, can pass any valid callback. False will force no callback.
 		) );
 
 		if ( false === $args['esc_callback'] ) {

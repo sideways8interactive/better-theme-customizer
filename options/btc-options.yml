@@ -1,0 +1,109 @@
+---
+general_options:
+  _panel:
+    title: General Options
+  header_options:
+    _section:
+      title: Header Options
+    site_logo:
+      label: Site Logo
+      type: media-library
+  footer_options:
+    _section:
+      title: Footer Options
+    footer_logo:
+      label: Footer Logo
+      type: media-library
+    footer_nav_title:
+      label: Menu Column Title
+      type: text
+      default: Site Map
+    footer_column_1_title:
+      label: Column 1 Title
+      type: text
+      default: Column Title
+    footer_column_1_text:
+      label: Column 1 Text
+      type: textarea
+    footer_column_2_title:
+      label: Column 2 Title
+      type: text
+      default: Column Title
+    footer_column_2_text:
+      label: Column 2 Text
+      type: textarea
+    footer_column_3_title:
+      label: Column 3 Title
+      type: text
+      default: Column Title
+    footer_column_3_text:
+      label: Column 3 Text
+      type: textarea
+    footer_copyright:
+      label: Copyright
+      type: textarea
+      description: The copyright that appears in the footer. Use "_YEAR_" any where
+        in this box to have it auto-replaced with the current year. "_SITE_NAME_"
+        will be auto-replaced with the site name.
+      default: "&copy; _YEAR_ _SITE_NAME_"
+  social_media:
+    _section:
+      title: Social Media
+    social_follow_text:
+      label: Social Media "Follow" Text
+      default: Follow us
+    btc_youtube_url:
+      label: YouTube URL
+    btc_linkedin_url:
+      label: LinkedIn URL
+    btc_facebook_url:
+      label: Facebook URL
+    btc_twitter_url:
+      label: Twitter URL
+    btc_instagram_url:
+      label: Instagram URL
+    btc_rss_url:
+      label: RSS URL
+
+homepage_options:
+  _panel:
+    title: Homepage Options
+  hp_samples:
+    _section:
+      title: Sample Options
+    hp_sample_text:
+      label: Sample Text
+      default: Sample Text
+    hp_sample_textarea:
+      label: Sample TextArea
+      default: Sample TextArea
+    hp_sample_image:
+      label: Sample Image
+      type: media-library
+    hp_sample_posts:
+      label: Sample Dropdown Posts
+      type: dropdown-posts
+    hp_sample_post_types:
+      label: Sample Dropdown Post Types
+      type: dropdown-post-types
+    hp_sample_taxonomies:
+      label: Sample Dropdown Taxonomies
+      type: dropdown-taxonomies
+    hp_sample_terms:
+      label: Sample Dropdown Terms
+      type: dropdown-terms
+
+page_layout:
+  _section:
+    title: Page Layout
+  infinite_theme_page_layout:
+    label: Default Page Layout
+    default: content-sidebar
+    type: select
+    choices:
+      content: Full width
+      content-sidebar: Two column with right sidebar
+      sidebar-content: Two column with left sidebar
+      content-sidebar-sidebar: Three column with content on the left
+      sidebar-content-sidebar: Three column with content in the middle
+      sidebar-sidebar-content: Three column with content on the right
