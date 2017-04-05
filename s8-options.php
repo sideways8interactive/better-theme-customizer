@@ -68,7 +68,7 @@ add_filter( 's8_options_register', function ( $settings ) {
 					'label'       => __( 'Copyright' ),
 					'type'        => 'textarea',
 					'description' => __( 'The copyright that appears in the footer. Use "_YEAR_" any where in this box to have it auto-replaced with the current year. "_SITE_NAME_" will be auto-replaced with the site name.' ),
-					'default'     => '&copy; _YEAR_ friendly human',
+					'default'     => '&copy; _YEAR_ _SITE_NAME_',
 				),
 			),
 			'social_media'   => array(
@@ -79,22 +79,22 @@ add_filter( 's8_options_register', function ( $settings ) {
 					'label'   => __( 'Social Media "Follow" Text' ),
 					'default' => 'Follow us',
 				),
-				's8theme_youtube_url'   => array(
+				'btc_youtube_url'   => array(
 					'label' => __( 'YouTube URL' ),
 				),
-				's8theme_linkedin_url'  => array(
+				'btc_linkedin_url'  => array(
 					'label' => __( 'LinkedIn URL' ),
 				),
-				's8theme_facebook_url'  => array(
+				'btc_facebook_url'  => array(
 					'label' => __( 'Facebook URL' ),
 				),
-				's8theme_twitter_url'   => array(
+				'btc_twitter_url'   => array(
 					'label' => __( 'Twitter URL' ),
 				),
-				's8theme_instagram_url' => array(
+				'btc_instagram_url' => array(
 					'label' => __( 'Instagram URL' ),
 				),
-				's8theme_rss_url'       => array(
+				'btc_rss_url'       => array(
 					'label' => __( 'RSS URL' ),
 				),
 			),

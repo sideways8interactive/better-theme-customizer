@@ -13,6 +13,8 @@ class Customizer_Helpers {
 	 *
 	 * @param       $mod
 	 * @param array $args
+	 *
+	 * @return void
 	 */
 	public static function the_mod( $mod, $args = array() ) {
 
@@ -55,6 +57,24 @@ class Customizer_Helpers {
 	}
 
 	/**
+	 * Echo html for image type theme mod.
+	 *
+	 * @param string $mod
+	 * @param string $image_size
+	 * @param bool   $icon
+	 * @param string $attr
+	 *
+	 * @return void
+	 */
+	public static function the_image_mod( $mod, $image_size = 'full', $icon = false, $attr = '' ) {
+
+		$image_id = get_theme_mod( $mod );
+
+		echo wp_get_attachment_image( $image_id, $image_size, $icon, $attr );
+
+	}
+
+	/**
 	 * Return image type theme mod.
 	 *
 	 * @param string $mod
@@ -63,7 +83,7 @@ class Customizer_Helpers {
 	 *
 	 * @return array|false
 	 */
-	public static function get_image_mod( $mod, $image_size, $icon ) {
+	public static function get_image_mod( $mod, $image_size = 'full', $icon = false ) {
 
 		$image_id = get_theme_mod( $mod );
 
@@ -72,7 +92,7 @@ class Customizer_Helpers {
 	}
 
 	/**
-	 * Return image type theme mod src.
+	 * Return image type theme mod src url only.
 	 *
 	 * @param string $mod
 	 * @param string $image_size
@@ -80,7 +100,7 @@ class Customizer_Helpers {
 	 *
 	 * @return string
 	 */
-	public static function get_image_mod_src( $mod, $image_size, $icon ) {
+	public static function get_image_mod_url( $mod, $image_size = 'full', $icon = false ) {
 
 		$image_id = get_theme_mod( $mod );
 
@@ -93,12 +113,11 @@ class Customizer_Helpers {
 	/**
 	 * Handles copyright parsing.
 	 *
-	 * @param $copyright_text
-	 *
 	 * @return mixed
 	 */
-	public static function handle_copyright( $copyright_text ) {
-		$search = array(
+	public static function get_copyright() {
+		$copyright_text = self::get_mod( 'footer_copyright' );
+		$search         = array(
 			'_YEAR_',
 			'_SITE_NAME_',
 		);
@@ -116,12 +135,15 @@ class Customizer_Helpers {
 	/**
 	 * Returns the html markup for our social media icons
 	 *
+	 * @todo This currently requires fontawesome to be installed. Either offer support for other icons or install
+	 *     fontawesome???
+	 *
 	 * @param array $args {
-	 *      Args array
 	 *
 	 * @type string $before HTML to output before icons
 	 * @type string $after HTML to output after icons
 	 * @type bool   $use_square When true, will use the square version of icons if available
+	 *
 	 * }
 	 *
 	 * @return string
@@ -129,7 +151,7 @@ class Customizer_Helpers {
 	public static function get_social_media_icons( $args = array() ) {
 
 		$args = wp_parse_args( $args, array(
-			'before'      => '<div class="bto-social-icons">',
+			'before'      => '<div class="btc-social-icons">',
 			'after'       => '</div>',
 			'use_square'  => true,
 			'size'        => '',
@@ -145,22 +167,22 @@ class Customizer_Helpers {
 		}
 
 		$icon_list = array(
-			'bto_facebook_url'  => ( $args['use_square'] ) ? 'fa-facebook-square' . $icon_size : 'fa-facebook' . $icon_size,
-			'bto_twitter_url'   => ( $args['use_square'] ) ? 'fa-twitter-square' . $icon_size : 'fa-twitter' . $icon_size,
-			'bto_youtube_url'   => ( $args['use_square'] ) ? 'fa-youtube-square' . $icon_size : 'fa-youtube' . $icon_size,
-			'bto_instagram_url' => 'fa-instagram' . $icon_size,
-			'bto_linkedin_url'  => ( $args['use_square'] ) ? 'fa-linkedin-square' . $icon_size : 'fa-linkedin' . $icon_size,
-			'bto_rss_url'       => ( $args['use_square'] ) ? 'fa-rss-square' . $icon_size : 'fa-rss' . $icon_size,
+			'btc_facebook_url'  => ( $args['use_square'] ) ? 'fa-facebook-square' . $icon_size : 'fa-facebook' . $icon_size,
+			'btc_twitter_url'   => ( $args['use_square'] ) ? 'fa-twitter-square' . $icon_size : 'fa-twitter' . $icon_size,
+			'btc_youtube_url'   => ( $args['use_square'] ) ? 'fa-youtube-square' . $icon_size : 'fa-youtube' . $icon_size,
+			'btc_instagram_url' => 'fa-instagram' . $icon_size,
+			'btc_linkedin_url'  => ( $args['use_square'] ) ? 'fa-linkedin-square' . $icon_size : 'fa-linkedin' . $icon_size,
+			'btc_rss_url'       => ( $args['use_square'] ) ? 'fa-rss-square' . $icon_size : 'fa-rss' . $icon_size,
 		);
 
 		// Define text associated with social media
 		$icon_text = array(
-			'bto_facebook_url'  => 'Facebook',
-			'bto_twitter_url'   => 'Twitter',
-			'bto_youtube_url'   => 'YouTube',
-			'bto_instagram_url' => 'Instagram',
-			'bto_linkedin_url'  => 'LinkedIn',
-			'bto_rss_url'       => 'RSS',
+			'btc_facebook_url'  => 'Facebook',
+			'btc_twitter_url'   => 'Twitter',
+			'btc_youtube_url'   => 'YouTube',
+			'btc_instagram_url' => 'Instagram',
+			'btc_linkedin_url'  => 'LinkedIn',
+			'btc_rss_url'       => 'RSS',
 		);
 
 		// remove social icons depending on $args['remove']
@@ -181,7 +203,7 @@ class Customizer_Helpers {
 					$break_after = $break_count === $args['break_after'] ? '<br>' : '';
 					$url         = esc_url( $url );
 					$text        = filter_var( $text, FILTER_SANITIZE_STRING );
-					$links[]     = "<a href='{$url}' target='_blank' class='bto-social-media-link'>$text</a>$break_after";
+					$links[]     = "<a href='{$url}' target='_blank' class='btc-social-media-link'>$text</a>$break_after";
 				}
 			}
 		} else {
@@ -192,7 +214,7 @@ class Customizer_Helpers {
 					$break_after = $break_count === $args['break_after'] ? '<br>' : '';
 					$url         = esc_url( $url );
 					$css_class   = esc_attr( $css_class );
-					$links[]     = "<a href='{$url}' target='_blank' class='bto-social-media-link'><i class='fa {$css_class}'></i></a>$break_after";
+					$links[]     = "<a href='{$url}' target='_blank' class='btc-social-media-link'><i class='fa {$css_class}'></i></a>$break_after";
 				}
 			}
 		}
@@ -207,13 +229,18 @@ class Customizer_Helpers {
 	/**
 	 * Outputs the theme social media icons
 	 *
+	 * @todo This currently requires fontawesome to be installed. Either offer support for other icons or install
+	 *     fontawesome???
+	 *
 	 * @param array $args {
-	 *      Args array
 	 *
 	 * @type string $before HTML to output before icons
 	 * @type string $after HTML to output after icons
 	 * @type bool   $use_square When true, will use the square version of icons if available
+	 *
 	 * }
+	 *
+	 * @return void
 	 */
 	public static function the_social_media_icons( $args = array() ) {
 		echo self::get_social_media_icons( $args );
