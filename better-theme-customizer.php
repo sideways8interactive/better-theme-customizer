@@ -10,6 +10,9 @@ namespace S8\BetterThemeCustomizer;
 
 use S8\BetterThemeCustomizer\CustomizerControls\Media_Library_Control;
 use S8\BetterThemeCustomizer\CustomizerControls\Dropdown_Posts_Control;
+use S8\BetterThemeCustomizer\CustomizerControls\Dropdown_gForm_Control;
+use S8\BetterThemeCustomizer\CustomizerControls\Dropdown_Taxonomies_Control;
+use S8\BetterThemeCustomizer\CustomizerControls\Dropdown_Terms_Control;
 use S8\BetterThemeCustomizer\CustomizerControls\Dropdown_Post_Types_Control;
 
 // Prevent direct access
@@ -150,9 +153,13 @@ class Better_Theme_Customizer {
 	 */
 	public function customize_register( $wp_customize ) {
 
-		require_once( 'customizer-controls/class-media-library-control.php' );
-		require_once( 'customizer-controls/class-dropdown-posts-control.php' );
-		require_once( 'customizer-controls/class-dropdown-post-types-control.php' );
+		require_once __DIR__ . '/customizer-controls/class-media-library-control.php';
+		require_once __DIR__ . '/customizer-controls/class-dropdown-posts-control.php';
+		require_once __DIR__ . '/customizer-controls/class-dropdown-terms-control.php';
+		require_once __DIR__ . '/customizer-controls/class-dropdown-taxonomies-control.php';
+		require_once __DIR__ . '/customizer-controls/class-dropdown-post-types-control.php';
+		require_once __DIR__ . '/customizer-controls/class-dropdown-gform-control.php';
+
 		// Get and setup options
 		$this->raw_options = apply_filters( 's8_options_register', array() );
 		$this->process_raw_options( $this->raw_options );
@@ -330,9 +337,23 @@ class Better_Theme_Customizer {
 					$wp_customize->add_control( new Media_Library_Control( $wp_customize, $setting_id,
 						$control_args ) );
 					break;
+				case 'dropdown-gform':
+					$wp_customize->add_control( new Dropdown_gForm_Control( $wp_customize, $setting_id, $control_args ) );
+					break;
+				case 'dropdown-taxonomies':
+					$wp_customize->add_control( new Dropdown_Taxonomies_Control( $wp_customize, $setting_id, $control_args ) );
+					break;
 				case 'dropdown-post-types':
 					$wp_customize->add_control( new Dropdown_Post_Types_Control( $wp_customize, $setting_id,
 						$control_args ) );
+					break;
+				case 'dropdown-terms':
+					$control_args = array_merge(
+						$control_args,
+						$this->_extract_args_to_array( $args, array(
+							'taxonomy' => 'taxonomy',
+						) ) );
+					$wp_customize->add_control( new Dropdown_Terms_Control( $wp_customize, $setting_id, $control_args ) );
 					break;
 				case 'dropdown-posts':
 					$control_args = array_merge(
