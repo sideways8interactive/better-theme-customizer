@@ -16,7 +16,7 @@ class Dropdown_Taxonomies_Control extends \WP_Customize_Control {
 		if ( ! empty( $taxonomies ) ) {
 			$choices = array( '' => __( '&mdash; Select &mdash;' ) );
 			foreach ( $taxonomies as $taxonomy ) {
-				$choices[ $taxonomy->name ] = ( isset( $taxonomy->labels['name'] ) ? $taxonomy->labels['name'] : $taxonomy->name );
+				$choices[ $taxonomy->name ] = ( isset( $taxonomy->labels->name ) ? $taxonomy->labels->name : $taxonomy->name );
 			}
 			?><label>
 			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
