@@ -1,5 +1,5 @@
 # Better Theme Customizer
-Better Theme Customizer acts as an API for WordPress' [Theme Modification API](https://codex.wordpress.org/Theme_Modification_API) with some extra features built in to the display functionality.
+Better Theme Customizer acts as an API for WordPress' [Theme Modification API](https://developer.wordpress.org/themes/customize-api/) with some extra features built in to the display functionality.
 
 ## Features
 - Easily add theme mods using a config file. Now supporting YAML.
@@ -134,7 +134,10 @@ calling the better_theme_customizer() function with a varying number of argument
   * ```$args``` array (Optional)
     - ```$before``` string HTML to output before icons
     - ```$after``` string HTML to output after icons
-    - ```$user_square``` bool When true, will use the square version of icons if available
+    - ```$use_square``` bool When true, will use the square version of icons if available
+    - ```$size``` string FontAwesome size for the icon.
+    - ```$text_only``` bool Whether to output text instead of the icons.
+    - ```$break_after``` bool Number of icons to wait until adding a "`<br>`"
   ```php
       better_theme_customizer( 'the_social_media_icons', $args );
   ```
@@ -142,7 +145,10 @@ calling the better_theme_customizer() function with a varying number of argument
   * ```$args``` array (Optional)
     - ```$before``` string HTML to output before icons
     - ```$after``` string HTML to output after icons
-    - ```$user_square``` bool When true, will use the square version of icons if available
+    - ```$use_square``` bool When true, will use the square version of icons if available
+    - ```$size``` string FontAwesome size for the icon.
+    - ```$text_only``` bool Whether to output text instead of the icons.
+    - ```$break_after``` bool Number of icons to wait until adding a "`<br>`"
   ```php
       better_theme_customizer( 'get_social_media_icons', $args );
   ```
