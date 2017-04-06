@@ -199,7 +199,8 @@ class Better_Theme_Customizer {
 		 * Top down priority
 		 */
 		$check_yaml = [
-			$theme_dir . '/btc-options.yml',
+			$theme_dir . '/includes/btc-options.yml',
+			$theme_dir . '/inc/btc-options.yml',
 			__DIR__ . '/options/btc-options.yml',
 		];
 

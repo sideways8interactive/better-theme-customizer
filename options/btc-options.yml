@@ -92,6 +92,9 @@ homepage_options:
     hp_sample_terms:
       label: Sample Dropdown Terms
       type: dropdown-terms
+    hp_sample_gform:
+      label: Sample Dropdown Gravity Form
+      type: dropdown-gform
 
 page_layout:
   _section:
