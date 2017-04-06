@@ -95,18 +95,3 @@ homepage_options:
     hp_sample_gform:
       label: Sample Dropdown Gravity Form
       type: dropdown-gform
-
-page_layout:
-  _section:
-    title: Page Layout
-  infinite_theme_page_layout:
-    label: Default Page Layout
-    default: content-sidebar
-    type: select
-    choices:
-      content: Full width
-      content-sidebar: Two column with right sidebar
-      sidebar-content: Two column with left sidebar
-      content-sidebar-sidebar: Three column with content on the left
-      sidebar-content-sidebar: Three column with content in the middle
-      sidebar-sidebar-content: Three column with content on the right

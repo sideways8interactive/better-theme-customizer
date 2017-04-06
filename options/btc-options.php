@@ -130,24 +130,6 @@ add_filter( 'btc_options_register', function ( $settings ) {
 
 			),
 		),
-		'page_layout'      => array(
-			'_section'                   => array(
-				'title' => __( 'Page Layout' ),
-			),
-			'infinite_theme_page_layout' => array(
-				'label'   => __( 'Default Page Layout' ),
-				'default' => 'content-sidebar',
-				'type'    => 'select',
-				'choices' => array(
-					'content'                 => __( 'Full width' ),
-					'content-sidebar'         => __( 'Two column with right sidebar' ),
-					'sidebar-content'         => __( 'Two column with left sidebar' ),
-					'content-sidebar-sidebar' => __( 'Three column with content on the left' ),
-					'sidebar-content-sidebar' => __( 'Three column with content in the middle' ),
-					'sidebar-sidebar-content' => __( 'Three column with content on the right' ),
-				),
-			),
-		),
 	);
 
 	return array_merge( $settings, $settings_array );
