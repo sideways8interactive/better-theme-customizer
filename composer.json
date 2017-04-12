@@ -10,8 +10,8 @@
       "role": "Developer"
     },
     {
-      "name": "David Wood",
-      "email": "davidw@sideways8.com",
+      "name": "Justin Fennell",
+      "email": "justinf@sideways8.com",
       "role": "Developer"
     },
     {
@@ -20,10 +20,10 @@
       "role": "Developer"
     }
   ],
-  "require_dev": {
-      "phpunit/phpunit": "~5.0"
-  },
   "require": {
     "symfony/yaml": "^3.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
   }
 }

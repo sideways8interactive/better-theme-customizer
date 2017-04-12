@@ -201,17 +201,8 @@ class Better_Theme_Customizer {
 		$check_yaml = [
 			$theme_dir . '/includes/btc-options.yml',
 			$theme_dir . '/inc/btc-options.yml',
-			__DIR__ . '/options/btc-options.yml',
-		];
-
-		/**
-		 * Top down priority
-		 */
-		$check_arr = [
-			$theme_dir . '/includes/btc-options.php',
-			$theme_dir . '/inc/btc-options.php',
-			$theme_dir . '/btc-options.php',
-			__DIR__ . '/options/btc-options.php',
+			$theme_dir . '/btc-options.yml',
+			__DIR__ . '/options/btc-options.yml', // always load last
 		];
 
 		foreach ( $check_yaml as $file ) {
@@ -230,13 +221,6 @@ class Better_Theme_Customizer {
 			}
 		}
 
-		foreach ( $check_arr as $arr ) {
-			if ( file_exists( $arr ) ) {
-				include_once( $arr );
-
-				return;
-			}
-		}
 	}
 
 	/**
