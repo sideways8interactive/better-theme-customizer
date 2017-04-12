@@ -1,12 +1,28 @@
 # Better Theme Customizer
+- [Project Summary](#summary)
+- [Features](#features)
+- [Installation](#installation)
+- [Customizer](#customizer)
+- [Usage](#usage)
+
+<a name="summary"></a>
+## Project Summary
 Better Theme Customizer acts as an API for WordPress' [Theme Modification API](https://developer.wordpress.org/themes/customize-api/) with some extra features built in to the display functionality.
 
+<a name="features"></a>
 ## Features
 - Easily add theme mods using a config file. Now supporting YAML.
 - Add theme mods for selecting taxonomies, posts, post_types, terms, images, etc
 - Works for multi-site setups
-- Comes with some sample options in the config file to get you started ('/options/btc-options.php', '/options/btc-options.yml')
+- Comes with some sample options in the config file to get you started ('/options/btc-options.yml')
 
+<a name="installation"></a>
+## Installation
+Download or clone this plugin, install and activate in through WordPress. Once activated it is setup and ready to use.
+To start configuring, copy the btc-options.yml file from the options directory in the plugin and place it within the theme
+directory either under an ```/inc``` or ```/includes``` directory
+
+<a name="customizer"></a>
 ## Customizer
 ### What's What?
 In the WP Customizer, there are four different elements to note:
@@ -16,8 +32,7 @@ In the WP Customizer, there are four different elements to note:
 3. Settings - Defines the default value, the name of the setting, and how it is stored in the database.
 4. Controls - Controls can only be placed inside a section, they define what the input type is (e.g. textarea, dropdown, etc.) and make a setting something controllable and visible.
 
-In our theme customizer, this has all been simplified into a PHP array and settings and controls are merged into one element (referred to as an option, for clarity).
-We have also added a YAML file ('/options/btc-options.php') to make things a little cleaner. This file will try to be loaded first.
+In our theme customizer, this has all been simplified into a YAML file where settings and controls are merged into one element (referred to as an option, for clarity).
 
 ### Option Format
 The options file contains some code to tie the variable into WordPress. The $settings_array variable holds our array of elements and uses the following format:
@@ -87,6 +102,7 @@ Options can only be placed inside sections. The array key should be the option I
     - option - Stores value as an option in the options table. Use only if you really have a reason to. Not a common need.
     - infinite_site_option - Stores value as a default WordPress site option. Only works in multisite!
 
+<a name="usage"></a>
 ## Usage
 The static methods in Customizer_Helper can be called directly or you can use the function helper we have created by
 calling the better_theme_customizer() function with a varying number of arguments. The first argument is always the method
@@ -152,3 +168,4 @@ calling the better_theme_customizer() function with a varying number of argument
   ```php
       better_theme_customizer( 'get_social_media_icons', $args );
   ```
+
